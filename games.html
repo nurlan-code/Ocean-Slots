@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ocean Games - Coming Soon | Ocean Slots</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #fff;
+            background: linear-gradient(135deg, #0a4b78, #1e88e5, #42a5f5);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Ocean Animation Background */
+        .ocean-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #0a4b78, #1e88e5, #42a5f5);
+            animation: oceanWave 8s ease-in-out infinite;
+        }
+
+        .ocean-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+            animation: bubbleFloat 6s ease-in-out infinite;
+        }
+
+        @keyframes oceanWave {
+            0%, 100% { background: linear-gradient(135deg, #0a4b78, #1e88e5, #42a5f5); }
+            50% { background: linear-gradient(135deg, #1e88e5, #42a5f5, #0a4b78); }
+        }
+
+        @keyframes bubbleFloat {
+            0%, 100% { transform: translateY(0px); opacity: 0.7; }
+            50% { transform: translateY(-20px); opacity: 1; }
+        }
+
+        /* Header */
+        header {
+            background: rgba(10, 75, 120, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid rgba(66, 165, 245, 0.3);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #42a5f5;
+            text-shadow: 0 0 10px rgba(66, 165, 245, 0.5);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .logo::before {
+            content: '🌊';
+            font-size: 2.5rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #42a5f5;
+            background: rgba(66, 165, 245, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .mobile-menu span {
+            width: 25px;
+            height: 3px;
+            background: #fff;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Coming Soon Section */
+        .coming-soon {
+            margin-top: 80px;
+            padding: 4rem 2rem;
+            text-align: center;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .coming-soon-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: slideInDown 1s ease-out;
+            color: #42a5f5;
+        }
+
+        .coming-soon-content .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            animation: slideInUp 1s ease-out;
+            opacity: 0.9;
+        }
+
+        .coming-soon-content p {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            max-width: 800px;
+            animation: slideInUp 1.2s ease-out;
+        }
+
+        @keyframes slideInDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Animated Ocean Icons */
+        .ocean-icons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .ocean-icon {
+            font-size: 4rem;
+            animation: bounce 2s ease-in-out infinite;
+            opacity: 0.8;
+        }
+
+        .ocean-icon:nth-child(1) { animation-delay: 0s; }
+        .ocean-icon:nth-child(2) { animation-delay: 0.2s; }
+        .ocean-icon:nth-child(3) { animation-delay: 0.4s; }
+        .ocean-icon:nth-child(4) { animation-delay: 0.6s; }
+        .ocean-icon:nth-child(5) { animation-delay: 0.8s; }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-20px); }
+            60% { transform: translateY(-10px); }
+        }
+
+        /* Countdown Timer */
+        .countdown-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 600px;
+            border: 1px solid rgba(66, 165, 245, 0.2);
+        }
+
+        .countdown-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #42a5f5;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .countdown-item {
+            text-align: center;
+            background: rgba(66, 165, 245, 0.2);
+            padding: 1rem;
+            border-radius: 15px;
+            min-width: 80px;
+            border: 1px solid rgba(66, 165, 245, 0.3);
+        }
+
+        .countdown-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #42a5f5;
+            display: block;
+        }
+
+        .countdown-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            text-transform: uppercase;
+        }
+
+        /* Preview Games */
+        .preview-games {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .preview-games h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #42a5f5;
+            text-shadow: 0 0 10px rgba(66, 165, 245, 0.3);
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .game-preview {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(66, 165, 245, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .game-preview::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(66, 165, 245, 0.1), transparent);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .game-preview:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .game-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .game-preview h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #42a5f5;
+        }
+
+        .game-status {
+            background: linear-gradient(45deg, #ff9800, #f57c00);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        /* Newsletter Signup */
+        .newsletter {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 3rem auto;
+            max-width: 600px;
+            text-align: center;
+            border: 1px solid rgba(66, 165, 245, 0.2);
+        }
+
+        .newsletter h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #42a5f5;
+        }
+
+        .newsletter p {
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 1rem;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 1rem;
+            border: 1px solid rgba(66, 165, 245, 0.3);
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        .newsletter-form input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .newsletter-form button {
+            background: linear-gradient(45deg, #42a5f5, #1e88e5);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(66, 165, 245, 0.3);
+        }
+
+        .newsletter-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(66, 165, 245, 0.4);
+        }
+
+        /* Back to Home Button */
+        .back-home {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: linear-gradient(45deg, #42a5f5, #1e88e5);
+            color: white;
+            padding: 1rem;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            box-shadow: 0 4px 15px rgba(66, 165, 245, 0.3);
+            z-index: 1000;
+        }
+
+        .back-home:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(66, 165, 245, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(10, 75, 120, 0.9);
+            padding: 2rem;
+            text-align: center;
+            border-top: 2px solid rgba(66, 165, 245, 0.3);
+            margin-top: 4rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #42a5f5;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #fff;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .coming-soon-content h1 { font-size: 3rem; }
+            .games-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .mobile-menu { display: flex; }
+            .coming-soon-content h1 { font-size: 2.5rem; }
+            .countdown { gap: 1rem; }
+            .newsletter-form { flex-direction: column; }
+            .ocean-icons { gap: 1rem; }
+        }
+
+        @media (max-width: 576px) {
+            .coming-soon { padding: 2rem 1rem; }
+            .coming-soon-content h1 { font-size: 2rem; }
+            .preview-games { padding: 2rem 1rem; }
+            .countdown-item { min-width: 60px; }
+            .countdown-number { font-size: 2rem; }
+        }
+
+        @media (max-width: 480px) {
+            .coming-soon-content h1 { font-size: 1.8rem; }
+            .logo { font-size: 1.5rem; }
+            .back-home { bottom: 1rem; right: 1rem; width: 50px; height: 50px; font-size: 1.2rem; }
+            .ocean-icon { font-size: 3rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="ocean-bg"></div>
+    
+    <header>
+        <nav>
+            <a href="index.html" class="logo">Ocean Slots</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="games.html" class="active">Games</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <section class="coming-soon">
+        <div class="coming-soon-content">
+            <h1>🎮 Coming Soon</h1>
+            <p class="subtitle">Dive into the Ultimate Ocean Gaming Experience!</p>
+            <p>Our amazing collection of ocean-themed slot games is currently under development. Get ready to explore underwater worlds, discover hidden treasures, and experience the thrill of the deep blue sea!</p>
+            
+            <div class="ocean-icons">
+                <span class="ocean-icon">🐠</span>
+                <span class="ocean-icon">🦈</span>
+                <span class="ocean-icon">🐙</span>
+                <span class="ocean-icon">🐋</span>
+                <span class="ocean-icon">⚓</span>
+            </div>
+
+            <div class="countdown-container">
+                <div class="countdown-title">🚀 Launch Countdown</div>
+                <div class="countdown" id="countdown">
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="days">30</span>
+                        <span class="countdown-label">Days</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="hours">12</span>
+                        <span class="countdown-label">Hours</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="minutes">45</span>
+                        <span class="countdown-label">Minutes</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="seconds">30</span>
+                        <span class="countdown-label">Seconds</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="preview-games">
+        <h2>🌊 Upcoming Ocean Adventures</h2>
+        <div class="games-grid">
+            <div class="game-preview">
+                <span class="game-icon">🐠</span>
+                <h3>Tropical Fish Paradise</h3>
+                <p>Swim with exotic tropical fish in crystal clear waters. Discover colorful coral reefs and unlock amazing bonus features!</p>
+                <span class="game-status">In Development</span>
+            </div>
+            
+            <div class="game-preview">
+                <span class="game-icon">🦈</span>
+                <h3>Shark Attack Slots</h3>
+                <p>Experience the thrill of the deep with our exciting shark-themed adventure. Navigate dangerous waters for massive rewards!</p>
+                <span class="game-status">Coming Soon</span>
+            </div>
+            
+            <div class="game-preview">
+                <span class="game-icon">🐙</span>
+                <h3>Octopus Garden</h3>
+                <p>Join the mystical octopus in his magical underwater garden. Watch tentacles create winning combinations across reels!</p>
+                <span class="game-status">Design Phase</span>
+            </div>
+            
+            <div class="game-preview">
+                <span class="game-icon">⚓</span>
+                <h3>Anchor's Away</h3>
+                <p>Set sail on a maritime adventure with anchors, ships, and brave sea captains. Chart your course to treasure!</p>
+                <span class="game-status">Planning</span>
+            </div>
+            
+            <div class="game-preview">
+                <span class="game-icon">🐋</span>
+                <h3>Whale Watch</h3>
+                <p>Witness the majesty of whales in this peaceful yet rewarding ocean slot experience. Gentle giants bring big wins!</p>
+                <span class="game-status">Concept</span>
+            </div>
+            
+            <div class="game-preview">
+                <span class="game-icon">💎</span>
+                <h3>Ocean Gems</h3>
+                <p>Discover precious gems hidden in the deepest parts of the ocean floor. Dive deep for sparkling treasures!</p>
+                <span class="game-status">Coming Soon</span>
+            </div>
+        </div>
+    </section>
+
+    <div class="newsletter">
+        <h3>🔔 Stay Updated</h3>
+        <p>Be the first to know when our ocean games launch! Subscribe to get exclusive early access and special bonuses.</p>
+        <form class="newsletter-form" id="newsletterForm">
+            <input type="email" placeholder="Enter your email address" required>
+            <button type="submit">🌊 Subscribe</button>
+        </form>
+    </div>
+
+    <a href="index.html" class="back-home" title="Back to Home">🏠</a>
+
+    <footer>
+        <div class="footer-links">
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+            <a href="responsible.html">Responsible Gaming</a>
+        </div>
+        <p>&copy; 2024 Ocean Slots. All rights reserved. | For entertainment purposes only.</p>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // Countdown Timer
+        function updateCountdown() {
+            // Set launch date (30 days from now)
+            const launchDate = new Date();
+            launchDate.setDate(launchDate.getDate() + 30);
+            
+            const now = new Date().getTime();
+            const distance = launchDate.getTime() - now;
+            
+            if (distance > 0) {
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                document.getElementById('days').textContent = days;
+                document.getElementById('hours').textContent = hours;
+                document.getElementById('minutes').textContent = minutes;
+                document.getElementById('seconds').textContent = seconds;
+            }
+        }
+        
+        // Update countdown every second
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // Newsletter form submission
+        document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input[type="email"]').value;
+            
+            if (email) {
+                const button = this.querySelector('button');
+                const originalText = button.innerHTML;
+                
+                button.innerHTML = '🌊 Subscribing...';
+                button.disabled = true;
+                
+                setTimeout(() => {
+                    alert('Thank you for subscribing! You\'ll be notified when our games launch.');
+                    this.reset();
+                    button.innerHTML = originalText;
+                    button.disabled = false;
+                }, 2000);
+            }
+        });
+
+        // Game preview animations
+        window.addEventListener('scroll', function() {
+            const previews = document.querySelectorAll('.game-preview');
+            previews.forEach(preview => {
+                const previewTop = preview.getBoundingClientRect().top;
+                const previewVisible = 150;
+                
+                if (previewTop < window.innerHeight - previewVisible) {
+                    preview.style.animation = 'slideInUp 0.6s ease-out forwards';
+                }
+            });
+        });
+
+        // Ocean icon hover effects
+        document.querySelectorAll('.ocean-icon').forEach(icon => {
+            icon.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.2) rotate(10deg)';
+                this.style.transition = 'transform 0.3s ease';
+            });
+            
+            icon.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1) rotate(0deg)';
+            });
+        });
+
+        // Random countdown number animation
+        setInterval(() => {
+            const numbers = document.querySelectorAll('.countdown-number');
+            numbers.forEach(num => {
+                num.style.transform = 'scale(1.1)';
+                setTimeout(() => {
+                    num.style.transform = 'scale(1)';
+                }, 200);
+            });
+        }, 5000);
+
+        // Ocean wave effect
+        setInterval(() => {
+            const oceanBg = document.querySelector('.ocean-bg');
+            oceanBg.style.opacity = Math.random() * 0.1 + 0.9;
+        }, 3000);
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Email validation
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        // Real-time email validation
+        document.querySelector('.newsletter-form input').addEventListener('input', function() {
+            const email = this.value;
+            if (email && !validateEmail(email)) {
+                this.style.borderColor = '#ff6b6b';
+            } else {
+                this.style.borderColor = 'rgba(66, 165, 245, 0.3)';
+            }
+        });
+    </script>
+</body>
+</html>
